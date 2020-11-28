@@ -1,12 +1,21 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Repository;
+
+
+
+@Repository
 public class User {
-    private int userId;
+    private Integer userId;
     private String username;
     private String salt;
     private String password;
     private String firstName;
     private String lastName;
+
+    @Autowired
     public User(Integer userId, String username, String salt, String password, String firstName, String lastName) {
         this.userId = userId;
         this.username = username;
@@ -16,7 +25,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
