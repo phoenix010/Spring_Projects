@@ -1,7 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
 public class SignupForm {
-    private User user;
+//    private User user;
     private String firstname;
     private String lastname;
     private String username;

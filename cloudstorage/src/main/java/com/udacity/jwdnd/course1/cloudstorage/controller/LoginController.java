@@ -18,7 +18,7 @@ public class LoginController {
     public String loginUser(){
         //check the username and password submitted in the form with the database.
         // If there are no errors go to home page otherwise display errors
-        return"login";
+        return"home";
     }
 }
 

@@ -15,12 +15,12 @@ import java.util.Base64;
 public class UserService {
     private final UserMapper userMapper;
     private final HashService hashService;
-    private  User user;
+//    private  User user;
 
-    public UserService(UserMapper userMapper, HashService hashService, User user) {
+    public UserService(UserMapper userMapper, HashService hashService) {
         this.userMapper = userMapper;
         this.hashService = hashService;
-        this.user = user;
+//        this.user = user;
     }
 
 
@@ -30,19 +30,18 @@ public class UserService {
     }
 
     public int createUser(SignupForm signupForm) {
-//        User user
 
-        user.setFirstName(signupForm.getFirstname());
-        user.setLastName(signupForm.getLastname());
-        user.setUsername(signupForm.getUsername());
-        user.setPassword(signupForm.getPassword());
+//        this.user.setFirstName(signupForm.getFirstname());
+//        this.user.setLastName(signupForm.getLastname());
+//        this.user.setUsername(signupForm.getUsername());
+//        this.user.setPassword(signupForm.getPassword());
 
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         String encodedSalt = Base64.getEncoder().encodeToString(salt);
-        String hashedPassword = hashService.getHashedValue(user.getPassword(), encodedSalt);
-        return userMapper.insert(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstName(), user.getLastName()));
+        String hashedPassword = hashService.getHashedValue(signupForm.getPassword(), encodedSalt);
+        return userMapper.insert(new User(null, signupForm.getUsername(), encodedSalt, hashedPassword, signupForm.getFirstname(), signupForm.getLastname()));
     }
 
     public User getUser(String username) {
