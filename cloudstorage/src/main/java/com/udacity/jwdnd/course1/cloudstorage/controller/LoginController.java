@@ -25,10 +25,12 @@ public class LoginController {
         System.out.println("Inside Get Login controller");
         return "login";
     }
+//    @PostMapping
+//    public String loginToHome(@ModelAttribute("loginForm") LoginForm loginForm) {
+////        System.out.println(isError);
+//        System.out.println("Inside POST Login controller");
+//        return "home";
+//    }
 
-    @ModelAttribute("isError")
-    public void addAttribute(Model model) {
-        Boolean isError = null;
-        model.addAttribute("isError", isError);
-    }
+
 }
