@@ -17,11 +17,13 @@ import java.util.List;
 public class UserService {
     private final UserMapper userMapper;
     private final HashService hashService;
+//    private final AuthenticationService auth ;
 //    private  User user;
 
     public UserService(UserMapper userMapper, HashService hashService) {
         this.userMapper = userMapper;
         this.hashService = hashService;
+
 //        this.user = user;
     }
 
@@ -47,29 +49,12 @@ public class UserService {
     public User getUser(String username) {
         return userMapper.getUser(username);
     }
-    public List<String> getPasswordList(String username){
-        return userMapper.passwordList(username);
-    }
-    public List<String> getUsernameList(String username){
-        return userMapper.usernameList(username);
-    }
 
-    public boolean validateUser(LoginForm loginForm){
-        String [] result = encodePassword(loginForm.getPassword());
-        String hashedPassword = result[0];
-        List<String> usernameList= getUsernameList(loginForm.getUsername());
-        List<String> passwordList = getPasswordList(loginForm.getUsername());
-        for(String name:usernameList){
-            if(loginForm.getUsername().equalsIgnoreCase(name)){
-                for(String password: passwordList){
-                    if(hashedPassword.equalsIgnoreCase(password)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
+
+//    public boolean validateUser(LoginForm loginForm){
+//        auth.
+//        return auth.authenticate(this.auth) == null;
+//    }
 //    public int createUser(SignupForm signupForm) {
 //        String[] result = encodePassword(signupForm.getPassword());
 //        SecureRandom random = new SecureRandom();

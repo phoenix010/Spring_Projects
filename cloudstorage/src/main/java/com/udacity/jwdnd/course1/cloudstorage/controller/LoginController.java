@@ -15,35 +15,20 @@ public class LoginController {
 
     private final UserService userService;
 
-    public LoginController(UserService userService){
+    public LoginController(UserService userService) {
         this.userService = userService;
     }
-    @GetMapping
-    public String loginView() {
 
+    @GetMapping
+    public String loginView(@ModelAttribute("loginForm") LoginForm loginForm) {
+//        System.out.println(isError);
+        System.out.println("Inside Get Login controller");
         return "login";
     }
 
-    @PostMapping
-    public String loginUser(@ModelAttribute("loginForm") LoginForm loginForm, Model model){
-//
-//        if(loginForm.getPassword().isEmpty())
-//            return "login";
-//        if(loginForm.getPassword().isEmpty())
-//            return "login";
-//
-//        //check the username and password submitted in the form with the database.
-//        // If there are no errors go to home page otherwise display errors
-//        if(userService.validateUser(loginForm)){
-//            loginForm.setLoginError(false);
-//            model.addAttribute(loginForm);
-//            System.out.println("Login successful");
-//            return "home";
-//        }else{
-//            loginForm.setLoginError(true);
-//            model.addAttribute(loginForm);
-//        }
-        return"login";
+    @ModelAttribute("isError")
+    public void addAttribute(Model model) {
+        Boolean isError = null;
+        model.addAttribute("isError", isError);
     }
 }
-
