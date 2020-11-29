@@ -18,8 +18,8 @@ public class LoginController {
     public LoginController(UserService userService){
         this.userService = userService;
     }
-    @GetMapping()
-    public String loginView(@ModelAttribute("loginForm") LoginForm loginForm) {
+    @GetMapping
+    public String loginView() {
 
         return "login";
     }

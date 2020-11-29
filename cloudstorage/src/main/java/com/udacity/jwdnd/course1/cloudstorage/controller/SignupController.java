@@ -22,13 +22,13 @@ public class SignupController {
 
     }
 
-    @GetMapping()
+    @GetMapping
     public String signupView(@ModelAttribute("signupForm") SignupForm signupForm ) {
 
         return "signup";
     }
 
-    @PostMapping()
+    @PostMapping
     public String signupUser(@ModelAttribute("signupForm") SignupForm signupForm, Model model){
 //        model.addAttribute("signupForm", new SignupForm());
         String signupError = null;
