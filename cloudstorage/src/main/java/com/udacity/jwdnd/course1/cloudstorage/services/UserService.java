@@ -28,7 +28,6 @@ public class UserService {
     }
 
 
-
     public boolean isUsernameAvailable(String username) {
         return userMapper.getUser(username) == null;
     }
@@ -37,24 +36,21 @@ public class UserService {
         String[] result = encodePassword(signupForm.getPassword());
         return userMapper.insert(new User(null, signupForm.getUsername(), result[1], result[0], signupForm.getFirstname(), signupForm.getLastname()));
     }
-    private String[] encodePassword(String password){
+
+    private String[] encodePassword(String password) {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         String encodedSalt = Base64.getEncoder().encodeToString(salt);
         String hashedPassword = hashService.getHashedValue(password, encodedSalt);
-        return new String[] {hashedPassword,encodedSalt};
+        return new String[]{hashedPassword, encodedSalt};
     }
 
     public User getUser(String username) {
         return userMapper.getUser(username);
     }
 
-
-//    public boolean validateUser(LoginForm loginForm){
-//        auth.
-//        return auth.authenticate(this.auth) == null;
-//    }
+}
 //    public int createUser(SignupForm signupForm) {
 //        String[] result = encodePassword(signupForm.getPassword());
 //        SecureRandom random = new SecureRandom();
@@ -64,4 +60,4 @@ public class UserService {
 //         String hashedPassword = hashService.getHashedValue(signupForm.getPassword(), encodedSalt);
 //        return userMapper.insert(new User(null, signupForm.getUsername(), result[1], result[0], signupForm.getFirstname(), signupForm.getLastname()));
 //    }
-}
+
