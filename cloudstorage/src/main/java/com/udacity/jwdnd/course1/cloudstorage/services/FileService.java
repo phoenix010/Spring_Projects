@@ -45,6 +45,10 @@ public class FileService {
         return fileMapper.insertFile(file);
 
     }
+    public File findByFileId(long fileId){
+        return fileMapper.findByFileId(fileId);
+    }
+    public void deleteFile(long fileId){ fileMapper.deleteFileByFileId(fileId);}
 
     public String getCurrentTimeUsingDate() {
         Date date = new Date();

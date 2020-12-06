@@ -23,9 +23,12 @@ public interface FileMapper {
     List<File> getFilesByUserId(Long userId);
 
     @Delete("DELETE FROM FILES WHERE fileid = #{fileId}")
-    void deleteFileByFileId(Integer fileId);
+    void deleteFileByFileId(long fileId);
 
     @Select("SELECT * FROM FILES WHERE filename = #{filename} AND userid = #{userid}")
     List<File> getByUsername(String filename, Long userid);
+
+    @Select("SELECT * FROM FILES WHERE fileId = #{fileId}")
+    File findByFileId(long fileId);
 
 }

@@ -54,10 +54,14 @@
                         <tbody>
                         <tr th:each="file : ${files}">
                             <td>
-                                <a target="_blank" class="btn btn-success">View</a>
-                                <a  class="btn btn-danger">Delete</a>
+                                <a th:href="@{'/download/' + ${file.fileId}}" target="_blank" class="btn btn-success">View</a>
+                                <a  class="btn btn-danger" th:href="@{/deleteFile/{fileId}/(fileId=${file.fileId})}">Delete</a>
+<!--                                <form class="delete-form" th:action="@{files/delete}" th:object="${fileDelete}" method="post">-->
+<!--                                    <input type="hidden" name="fileId" th:value="${file.fileId}" />-->
+<!--                                    <input type="submit" value="Delete" class="btn btn-danger" />-->
+<!--                                </form>-->
                             </td>
-                            <th scope="row" th:text="${file.fileName}">Eaxmaple</th>
+                            <th scope="row" th:text="*{file.fileName}">Eaxmaple</th>
                         </tr>
                         </tbody>
                     </table>
