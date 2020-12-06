@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 
-@Controller()
+
+@Controller
 @RequestMapping("/login")
 public class LoginController {
 
@@ -23,16 +23,7 @@ public class LoginController {
 
     @GetMapping
     public String loginView(@ModelAttribute("loginForm") LoginForm loginForm) {
-//        System.out.println(isError);
         System.out.println("Inside Get Login controller");
         return "login";
     }
-//    @PostMapping
-//    public String loginToHome(@ModelAttribute("loginForm") LoginForm loginForm) {
-////        System.out.println(isError);
-//        System.out.println("Inside POST Login controller");
-//        return "home";
-//    }
-
-
 }
