@@ -5,12 +5,14 @@ import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,13 +21,13 @@ import java.util.List;
 
 @Controller
 
-public class FileUploadController {
+public class FileController {
 
     private final FileService fileService;
     private UserService userService;
 
 
-    public FileUploadController(FileService fileService, UserService userService) {
+    public FileController(FileService fileService, UserService userService) {
 
         this.fileService = fileService;
         this.userService = userService;
@@ -55,6 +57,35 @@ public class FileUploadController {
             model.addAttribute("message",e.getMessage());
         }
             return "result";
+    }
+
+    @GetMapping("/deleteFile/{fileId}")
+    public String  handleFileDelete(@PathVariable("fileId") Long fileId, Model model) {
+        try{
+            this.fileService.deleteFile(fileId);
+            model.addAttribute("success",true);
+            model.addAttribute("message", "File deleted!");
+        }catch(Exception e){
+            model.addAttribute("error",true);
+            model.addAttribute("message","System error!" + e.getMessage());
+        }
+        return "result";
+    }
+
+    @GetMapping("/download/{fileId}")
+    public ResponseEntity<Resource>  handleFileDownload(@PathVariable("fileId") Integer fileId) {
+
+        File file = fileService.findByFileId(fileId);
+
+        HttpHeaders header = new HttpHeaders();
+        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename = " + file.getFileName());
+        header.add("Cache-control", "no-cache, no-store, must-revalidate");
+        header.add("Pragma", "no-cache");
+        header.add("Expires", "0");
+        ByteArrayResource resource = new ByteArrayResource((file.getFileData()));
+        return ResponseEntity.ok()
+                .headers(header)
+                .body(resource);
     }
 
 
