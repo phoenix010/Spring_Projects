@@ -56,10 +56,6 @@
                             <td>
                                 <a th:href="@{'/download/' + ${file.fileId}}" target="_blank" class="btn btn-success">View</a>
                                 <a  class="btn btn-danger" th:href="@{/deleteFile/{fileId}/(fileId=${file.fileId})}">Delete</a>
-<!--                                <form class="delete-form" th:action="@{files/delete}" th:object="${fileDelete}" method="post">-->
-<!--                                    <input type="hidden" name="fileId" th:value="${file.fileId}" />-->
-<!--                                    <input type="submit" value="Delete" class="btn btn-danger" />-->
-<!--                                </form>-->
                             </td>
                             <th scope="row" th:text="*{file.fileName}">Eaxmaple</th>
                         </tr>
@@ -85,11 +81,12 @@
                         <tbody>
                         <tr th:each="note : ${notes}">
                             <td>
-                                <button type="button" class="btn btn-success">Edit</button>
+                                <button type="button" class="btn btn-success"
+                                        th:onclick="showNoteModal([[${note.noteid}]], [[${note.notetitle}]], [[${note.notedescription}]])">Edit</button>>Edit</button>
                                 <a class="btn btn-danger">Delete</a>
                             </td>
-                            <th scope="row" th:text="${note.noteTitle}">Example Note Title</th>
-                            <td th:text="${note.noteDescription}">Example Note Description </td>
+                            <th scope="row" th:text="${note.noteTitle}" />
+                            <td th:text="${note.noteDescription}" />
                         </tr>
                         </tbody>
                     </table>
@@ -106,7 +103,7 @@
                             </div>
                             <div class="modal-body">
                                 <form th:action="@{/notes}" th:object="${noteForm}" method="POST">
-                                    <input type="hidden" name="noteId" id="note-id">
+                                    <input type="hidden"  id="note-id">
                                     <div class="form-group">
                                         <label for="note-title" class="col-form-label" >Title</label>
                                         <input type="text" th:field="${noteForm.noteTitle}" name= "noteTitle" class="form-control" id="note-title" maxlength="20" required>

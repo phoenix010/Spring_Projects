@@ -21,6 +21,15 @@ public interface NoteMapper {
     @Select("SELECT * FROM NOTES WHERE noteId = #{noteId}")
     File getNotebyNoteId(long noteId);
 
-    @Select("SELECT * FROM NOTES WHERE userid = #{userId}")
+    @Select("SELECT * FROM NOTES WHERE userId = #{userId}")
     List<Note> getNotesByUserId(long userId);
+
+    @Select("Select* FROM NOTES where noteId = #{noteId}")
+    List<Note> getNotesByNoteId(long noteId);
+
+    @Update("UPDATE NOTES SET noteTitle = #{noteTitle}, noteDescription = #{noteDescription} WHERE noteId = #{noteId}")
+    int update(Note note);
+
+    @Delete("DELETE FROM NOTES WHERE noteId = #{noteId} AND userId = #{userId}")
+    int delete(Note note);
 }

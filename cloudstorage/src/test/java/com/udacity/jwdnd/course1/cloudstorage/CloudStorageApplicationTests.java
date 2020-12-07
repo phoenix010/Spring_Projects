@@ -26,8 +26,9 @@ class CloudStorageApplicationTests {
 	}
 
 	@AfterEach
-	public void afterEach() {
+	public void afterEach() throws InterruptedException {
 		if (this.driver != null) {
+			Thread.sleep(5000);
 			driver.quit();
 		}
 	}
@@ -36,6 +37,10 @@ class CloudStorageApplicationTests {
 	public void getSignupPage() {
 		this.driver.get("http://localhost:" + this.port + "/signup");
 		Assertions.assertEquals("Sign Up", this.driver.getTitle());
+	}
+	@Test
+	public void setSignupPage(){
+		this.driver.get("http://localhost:" + this.port + "/signup");
 	}
 
 }

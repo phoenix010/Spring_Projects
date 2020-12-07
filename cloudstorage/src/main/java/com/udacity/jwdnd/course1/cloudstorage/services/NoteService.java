@@ -18,15 +18,18 @@ public class NoteService {
         this.noteMapper = noteMapper;
     }
 
-    public int insertNote(Note note,long userId){
+    public int inserOrUpdatetNote(Note note,long userId){
         note.setUserId(userId);
+        long noteId = note.getNoteId();
+        if(noteMapper.getNotesByNoteId(noteId).isEmpty()) {
+            return noteMapper.update(note);
+        }
+
         return noteMapper.insertNote(note);
     }
-    public List<Note> NoteUpload(Long userId){ return noteMapper.getNotesByUserId(userId);  }
-
-
-
-
-
-
+    public int deleteNote(Note note, long userId) {
+        note.setUserId(userId);
+        return noteMapper.delete(note);
+    }
+    public List<Note> noteUpload(Long userId){ return noteMapper.getNotesByUserId(userId);  }
 }
