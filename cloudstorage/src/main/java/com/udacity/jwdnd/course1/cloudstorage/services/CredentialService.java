@@ -2,7 +2,6 @@ package com.udacity.jwdnd.course1.cloudstorage.services;
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.CredentialsMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Credentials;
-import com.udacity.jwdnd.course1.cloudstorage.model.Note;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -28,13 +27,23 @@ public class CredentialService {
         String hashedPassword = hashService.getHashedValue(password, encodedSalt);
         return new String[]{hashedPassword, encodedSalt};
     }
+    public long getCredIdByUserId(long userId){
+        return credentialsMapper.getCredId(userId);
+    }
+    public String getusernameByUserId(long userId){
+        return credentialsMapper.getUsernamebyuserId(userId);
+    }
+    public int deleteCreds(long credentialId,long userId){
+        return credentialsMapper.delete(credentialId,userId);
+    }
     public int insert(Credentials creds , long userId){
         creds.setUserId(userId);
+        creds.setUsername(creds.getUsername());
         String[] result = encodePassword(creds.getPassword());
         creds.setPassword(result[0]);
         creds.setKey(result[1]);
         return credentialsMapper.insert(creds);
     }
     public List<Credentials> credsUpload(Long userId){
-        return CredentialsMapper .getCredsByUserId(userId);  }
+        return credentialsMapper.getCredsByUserId(userId);  }
 }

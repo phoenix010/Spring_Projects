@@ -30,7 +30,7 @@ public interface NoteMapper {
     @Update("UPDATE NOTES SET noteTitle = #{noteTitle}, noteDescription = #{noteDescription} WHERE noteId = #{noteId}")
     int update(Note note);
 
-    @Delete("DELETE FROM NOTES WHERE noteId = #{noteId} AND userId = #{userId}")
+    @Delete("DELETE  FROM NOTES WHERE noteId = #{noteId} AND userId = #{userId}")
     int delete(long noteId, long userId);
 
     @Select("Select NOTETITLE FROM NOTES WHERE noteid = #{noteId}")
