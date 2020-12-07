@@ -16,7 +16,7 @@ public interface NoteMapper {
     int insertNote(Note note);
 
     @Delete("DELETE FROM NOTES WHERE noteId = #{noteId}")
-    void deleteNotebyNoteId(long noteId);
+    void delId(long noteId);
 
     @Select("SELECT * FROM NOTES WHERE noteId = #{noteId}")
     File getNotebyNoteId(long noteId);
