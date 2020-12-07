@@ -31,5 +31,8 @@ public interface NoteMapper {
     int update(Note note);
 
     @Delete("DELETE FROM NOTES WHERE noteId = #{noteId} AND userId = #{userId}")
-    int delete(Note note);
+    int delete(long noteId, long userId);
+
+    @Select("Select NOTETITLE FROM NOTES WHERE noteid = #{noteId}")
+    String getNotetile(long noteId);
 }

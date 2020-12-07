@@ -40,7 +40,6 @@ public class HomeController {
     List<Note> notes=this.noteService.noteUpload(user.getUserId());
     model.addAttribute("notes",notes);
     model.addAttribute("noteForm", new Note());
-//   model.addAttribute("credentials", this.credentialService.getCredentials(userId));
     model.addAttribute("credentials", new Credentials());
     return "home";
     }
