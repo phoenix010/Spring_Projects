@@ -18,15 +18,14 @@ public class NoteService {
         this.noteMapper = noteMapper;
     }
 
-    public int inserOrUpdatetNote(Note note,long userId){
+    public int insertNote(Note note,long userId){
         note.setUserId(userId);
-        long noteId = note.getNoteId();
-        if(!noteMapper.getNotesByNoteId(noteId).isEmpty()) {
-            return noteMapper.update(note);
-        }
-
         return noteMapper.insertNote(note);
     }
+    public int updateNote(Note note, long userId){
+        return noteMapper.update(note);
+    }
+
     public int deleteNote(long noteId, long userId) {
 //        note.setUserId(userId);
         return noteMapper.delete(noteId,userId);

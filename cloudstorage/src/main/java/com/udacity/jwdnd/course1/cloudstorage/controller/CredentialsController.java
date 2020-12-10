@@ -22,21 +22,30 @@ public class CredentialsController {
     }
 
     @PostMapping("/credentials")
-    public String handleCredentailUpload(Model model, @ModelAttribute("credentials") Credentials creds, Authentication authentication ){
+    public String handleCredentialsUploadAndEdit(Model model, @ModelAttribute("credentials") Credentials creds, Authentication authentication ){
         User user = this.userService.getUser(authentication.getName());
         Long userId = user.getUserId();
+        System.out.println(creds.getCredentialId());
         try{
-            this.credentialService.insert(creds, userId);
-            System.out.println("Credentials added");
-//            System.out.println(this.credentialService.getCredIdByUserId(userId));
-//            System.out.println(this.credentialService.getusernameByUserId(userId));
-            model.addAttribute("success",true);
-            model.addAttribute("message","New Credentails are added successfully!");
-        }catch(Exception e){
+            if(creds.getCredentialId() == 0) {
+                this.credentialService.insertCreds(creds,userId);
+                System.out.println("Inserting"+creds.getCredentialId());
+                model.addAttribute("success",true);
+                model.addAttribute("message","New Credentails are  added successfully!");
+                System.out.println("Creds added");
+            }else{
+                this.credentialService.updateCreds(creds, userId);
+                model.addAttribute("success", true);
+                model.addAttribute("message", "Credential updated successfully");
+                System.out.println("Creds updated");
+            }
+
+        }catch (Exception e){
+//            System.out.println(e.printStackTrace());
+            e.printStackTrace();
             model.addAttribute("error",true);
             model.addAttribute("message",e.getMessage());
         }
-        System.out.println("Crdentials service is working");
         return "result";
     }
 

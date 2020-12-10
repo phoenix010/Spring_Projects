@@ -27,17 +27,27 @@ public class NotesController {
     public String handleNoteUploadAndEdit(Model model, @ModelAttribute("noteForm") Note note, Authentication authentication ){
         User user = this.userService.getUser(authentication.getName());
         Long userId = user.getUserId();
-        try{
-            this.noteService.inserOrUpdatetNote(note,userId);
-            System.out.println(this.noteService.getNoteTitle(note));
-            model.addAttribute("success",true);
-            model.addAttribute("message","New Note added successfully!");
-            System.out.println("Note added");
-        }catch(Exception e){
-            model.addAttribute("error",true);
-            model.addAttribute("message",e.getMessage());
+        System.out.println(note.getNoteId());
+            try{
+                if(note.getNoteId() == 0) {
+                    this.noteService.insertNote(note,userId);
+                    System.out.println("Inserting"+note.getNoteId());
+                    System.out.println(this.noteService.getNoteTitle(note));
+                    model.addAttribute("success",true);
+                    model.addAttribute("message","New Note added successfully!");
+                    System.out.println("Note added");
+                }else{
+                    this.noteService.updateNote(note, userId);
+                    model.addAttribute("success", true);
+                    model.addAttribute("message", "Note updated successfully");
+                    System.out.println("Note updated");
+                }
+
+            }catch (Exception e){
+                model.addAttribute("error",true);
+                model.addAttribute("message",e.getMessage());
         }
-        return "result";
+            return "result";
     }
 
     @GetMapping("/deleteNote/{noteId}")

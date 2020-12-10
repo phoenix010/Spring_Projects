@@ -1,13 +1,13 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
 public class Note {
-    private long noteId;
+    private Long noteId;
     private String noteTitle;
     private String noteDescription;
     private long userId;
 
 
-    public long getNoteId() {
+    public Long getNoteId() {
         return noteId;
     }
 
