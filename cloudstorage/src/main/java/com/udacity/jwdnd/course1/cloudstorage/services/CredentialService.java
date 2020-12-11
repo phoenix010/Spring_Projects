@@ -75,5 +75,4 @@ public class CredentialService {
             return credential;
         }).collect(Collectors.toList());
     }
-//        return credentialsMapper.getCredsByUserId(userId);
-    }
+}

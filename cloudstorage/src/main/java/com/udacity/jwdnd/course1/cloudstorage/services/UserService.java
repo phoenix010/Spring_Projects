@@ -46,13 +46,5 @@ public class UserService {
     }
 
 }
-//    public int createUser(SignupForm signupForm) {
-//        String[] result = encodePassword(signupForm.getPassword());
-//        SecureRandom random = new SecureRandom();
-//        byte[] salt = new byte[16];
-//        random.nextBytes(salt);
-//        String encodedSalt = Base64.getEncoder().encodeToString(salt);
-//         String hashedPassword = hashService.getHashedValue(signupForm.getPassword(), encodedSalt);
-//        return userMapper.insert(new User(null, signupForm.getUsername(), result[1], result[0], signupForm.getFirstname(), signupForm.getLastname()));
-//    }
+
 

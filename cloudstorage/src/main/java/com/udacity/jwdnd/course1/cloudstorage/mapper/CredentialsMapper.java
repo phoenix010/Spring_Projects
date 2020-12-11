@@ -15,9 +15,6 @@ public interface CredentialsMapper {
     @Options(useGeneratedKeys = true, keyProperty = "credentialId")
     int insert(Credentials creds);
 
-//    @Insert("INSERT INTO FILES (filename, contentType, filesize, userid, filedata) VALUES (#{fileName}, #{contentType}, #{fileSize}, #{userId}, #{fileData})")
-//    @Options(useGeneratedKeys = true, keyProperty = "fileId")
-//    int insertFile(File file);
     @Select("SELECT username FROM CREDENTIALS WHERE userId = #{userId}")
     String getUsernamebyuserId(long userId);
 

@@ -4,7 +4,7 @@ import com.udacity.jwdnd.course1.cloudstorage.model.File;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -87,41 +87,6 @@ public class FileController {
                 .headers(header)
                 .body(resource);
     }
-
-
-
-
-
-
-
-
-
-
-
-//    @PostMapping("/file-upload")
-//    public String handleFileUpload(@RequestParam("fileUpload") MultipartFile multipartFile, File file, Model model, Authentication authentication) {
-//        boolean fileUploadSuccess = true;
-//        boolean fileUploadError = false ;
-//        if(multipartFile.isEmpty()){
-//            fileUploadError = true;
-//            model.addAttribute("fileUploadError", "File is empty");
-//        }else{
-//            try {
-//                int rowAdded = fileService.storeInDB(multipartFile,authentication);
-//                System.out.println(rowAdded);
-//            } catch (IOException e) {
-//                fileUploadError = true;
-//                e.printStackTrace();
-//                model.addAttribute("fileUploadError", "There was an error in uploading file. Please Try again");
-//
-//            }
-//            List<File> files=fileService.filesUpload(file.getUserId());
-//            model.addAttribute("fileUploadSuccess","File uploaded successfully");
-//            model.addAttribute("files",files);
-//            System.out.println("Upload Successful");
-//        }
-//        return "redirect:/home";
-//    }
 }
 
 

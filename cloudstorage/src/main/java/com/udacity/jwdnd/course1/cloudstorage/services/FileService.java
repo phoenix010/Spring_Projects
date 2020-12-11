@@ -31,7 +31,6 @@ public class FileService {
     public List<File> filesUpload(Long userId){ return fileMapper.getFilesByUserId(userId);  }
 
     public Boolean filenameExists(String filename, Long userid) {
-//        ArrayList<File> result = fileMapper.getByUsername(filename, userid);
         return !fileMapper.getByUsername(filename, userid).isEmpty();
     }
 
