@@ -12,7 +12,7 @@
 <div class="container">
     <div id="logoutDiv">
         <form th:action="@{/logout}" method="POST">
-            <button type="submit" class="btn btn-secondary float-right">Logout</button>
+            <button id="logoutButton" type="submit" class="btn btn-secondary float-right">Logout</button>
         </form>
     </div>
     <div id="contentDiv" style="clear: right;">
@@ -65,7 +65,7 @@
             </div>
 <!--            File Transfer-->
             <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="nav-notes-tab">
-                <button style="margin: 0.25em;" type="button" class="btn btn-info float-right" onclick="showNoteModal()">
+                <button style="margin: 0.25em;" type="button" class="btn btn-info float-right" id="addNoteButton" onclick="showNoteModal()">
                     + Add a New Note
                 </button>
 
@@ -78,14 +78,14 @@
                             <th style="width: 60%" scope="col">Description</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="notes-table-body">
                         <tr th:each="note : ${notes}">
                             <td>
-                                <button type="button" class="btn btn-success"
+                                <button id="editNoteButton" type="button" class="btn btn-success"
                                         th:onclick="javascript:showNoteModal([[${note.noteId}]], [[${note.noteTitle}]], [[${note.noteDescription}]])">Edit</button>
-                                <a class="btn btn-danger"th:href="@{/deleteNote/{noteId}/(noteId=${note.noteId})}">Delete</a>
+                                <a id = "deleteNoteButton" class="btn btn-danger" th:href="@{/deleteNote/{noteId}/(noteId=${note.noteId})}">Delete</a>
                             </td>
-                            <th scope="row" th:text="${note.noteTitle}" />
+                            <th id="table-noteTitle" scope="row" th:text="${note.noteTitle}" />
                             <td th:text="${note.noteDescription}" />
                         </tr>
                         </tbody>
