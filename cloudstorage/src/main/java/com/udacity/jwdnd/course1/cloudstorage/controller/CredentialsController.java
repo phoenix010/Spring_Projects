@@ -58,7 +58,7 @@ public class CredentialsController {
         try {
             this.credentialService.deleteCreds(credentialId, userId);
             model.addAttribute("success",true);
-            model.addAttribute("message", "Note deleted!");
+            model.addAttribute("message", "Credentials deleted!");
         } catch (Exception e) {
             model.addAttribute("error",true);
             model.addAttribute("message","System error!" + e.getMessage());
