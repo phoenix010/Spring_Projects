@@ -21,10 +21,10 @@ public class LoginController {
     }
 
     @GetMapping
-    public String loginView(@ModelAttribute("loginForm") LoginForm loginForm, Model model ) {
+    public String loginView(@ModelAttribute("loginForm") LoginForm loginForm, Model model,@ModelAttribute("confirmation") final Object confirmation ) {
 //        model.addAttribute("signupSuccess",true);
 //        System.out.println(mapping);
-//        model.addAttribute("confirmation",confirmation);
+        model.addAttribute("confirmation",confirmation);
         System.out.println("Inside Get Login controller");
         return "login";
     }
