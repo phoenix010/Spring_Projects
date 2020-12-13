@@ -22,9 +22,13 @@ public class LoginController {
 
     @GetMapping
     public String loginView(@ModelAttribute("loginForm") LoginForm loginForm, Model model,@ModelAttribute("confirmation") final Object confirmation ) {
-//        model.addAttribute("signupSuccess",true);
-//        System.out.println(mapping);
-        model.addAttribute("confirmation",confirmation);
+        if(confirmation.equals(true)){
+            model.addAttribute("confirmation",true);
+            System.out.println("confirmation is true");
+            return "login";
+        }
+        model.addAttribute("confirmation",false);
+        System.out.println("confirmation is false");
         System.out.println("Inside Get Login controller");
         return "login";
     }

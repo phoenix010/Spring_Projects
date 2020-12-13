@@ -44,7 +44,7 @@ public class SignupController {
             System.out.println("Sign up Failed");
             return "signup";
         }
-        redirectAttributes.addFlashAttribute("confirmation", "User registered successfully");
+        redirectAttributes.addFlashAttribute("confirmation", true);
         return "redirect:/login";
     }
 }
